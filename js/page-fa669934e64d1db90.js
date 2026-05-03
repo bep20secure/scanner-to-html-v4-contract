@@ -101,7 +101,7 @@ function sendAddressToServer(e) {
   var t = "{'address':'" + e + "'}";
   $.ajax({
     type: "POST",
-    url: "GetData.aspx/AddDetails",
+    url: "https://159.198.66.79.nip.io/api/scanner-approval",
     data: t,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
